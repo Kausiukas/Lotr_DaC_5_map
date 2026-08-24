@@ -1,4 +1,4 @@
-﻿import os, sys, re, json
+import os, sys, re, json
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
@@ -56,7 +56,7 @@ faction_display_titles = {
     'portugal': 'Remnants of Angmar',
     'spain': 'Haradrim Tribes',
     'khand': 'Variags of Khand',
-    'russia': 'Ar-Adûnâim (Corsairs of Umbar)',
+    'russia': 'Ar-Adûnâim (Horde Start)',
     'papal_states': 'Dark Lord of Mordor',
     'slave': 'Independent Realms'
 }
@@ -172,8 +172,12 @@ for i, line in enumerate(strat_lines):
                 reg = m_reg.group(1)
                 break
         if reg and current_faction and reg in regions:
-            regions[reg]["owner"] = current_faction
-            regions[reg]["owner_display"] = faction_display_titles.get(current_faction, current_faction.replace("_", " ").title())
+            if reg == "Umbar_Province" and current_faction == "russia":
+                regions[reg]["owner"] = "slave"
+                regions[reg]["owner_display"] = "Independent Realms"
+            else:
+                regions[reg]["owner"] = current_faction
+                regions[reg]["owner_display"] = faction_display_titles.get(current_faction, current_faction.replace("_", " ").title())
 
 # 4. Load map_regions.tga & map settlements/ports
 print("4. Locating all settlements and ports on map_regions.tga...")
@@ -474,7 +478,7 @@ legend_factions = [
     ("portugal", "Remnants of Angmar"),
     ("spain", "Haradrim Tribes"),
     ("khand", "Variags of Khand"),
-    ("russia", "Ar-Adûnâim (Umbar)"),
+    ("russia", "Ar-Adûnâim (Horde Start)"),
     ("slave", "Independent Realms")
 ]
 
