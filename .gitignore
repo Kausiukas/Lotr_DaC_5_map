@@ -1,0 +1,17 @@
+﻿# Python cache
+__pycache__/
+*.pyc
+
+# Scratch / Temp test files
+test_*.py
+find_*.py
+get_coords.py
+build_*.py
+calc_fe_pins.py
+update_*.py
+warp_fe_map.py
+rendered_maps/*preview*.jpg
+rendered_maps/*fixed.jpg
+rendered_maps/*grid.jpg
+rendered_maps/test_*.jpg
+rendered_maps/base_map_FE_aligned.jpg
